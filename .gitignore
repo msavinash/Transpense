@@ -1,0 +1,14 @@
+# Ignore all files in the venv directory
+venv/
+
+# Ignore the service account JSON file
+secret/transpense-firebase-adminsdk-u8q1s-bc0d0d9ab9.json
+
+# Ignore Python bytecode
+*.pyc
+
+# Ignore directories named __pycache__
+__pycache__/
+
+# Ignore .env files
+.env
