@@ -12,3 +12,29 @@ __pycache__/
 
 # Ignore .env files
 .env
+
+
+# Frontend
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+Frontend/my-transpense-app/node_modules
+Frontend/my-transpense-app/.pnp
+Frontend/my-transpense-app/.pnp.js
+
+# testing
+Frontend/my-transpense-app/coverage
+
+# production
+Frontend/my-transpense-app/build
+
+# misc
+Frontend/my-transpense-app/.DS_Store
+Frontend/my-transpense-app/.env.local
+Frontend/my-transpense-app/.env.development.local
+Frontend/my-transpense-app/.env.test.local
+Frontend/my-transpense-app/.env.production.local
+
+Frontend/my-transpense-app/npm-debug.log*
+Frontend/my-transpense-app/yarn-debug.log*
+Frontend/my-transpense-app/yarn-error.log*
