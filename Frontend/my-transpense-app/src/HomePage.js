@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -18,6 +18,8 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
+import BudgetPage from './BudgetPage';
+
 
 const drawerWidth = 240;
 
@@ -71,6 +73,7 @@ const HomePage = () => {
 
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
+    const [selectedPage, setSelectedPage] = useState('Home'); // Default to Home page
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -79,6 +82,18 @@ const HomePage = () => {
     const handleDrawerClose = () => {
         setOpen(false);
     };
+
+    const handlePageChange = (pageName) => {
+        setSelectedPage(pageName);
+      };
+    
+    const renderPage = () => {
+    switch (selectedPage) {
+        case 'View Budget':
+        return <BudgetPage />;
+    }
+    };
+    
 
   return (
     <div>
@@ -123,7 +138,9 @@ const HomePage = () => {
         <Divider />
         <List>
           {['View Budget'].map((text, index) => (
-            <ListItem key={text} disablePadding>
+            <ListItem key={text} disablePadding
+            button
+            onClick={() => handlePageChange(text)}>
               <ListItemButton>
                 <ListItemIcon>
                   {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
@@ -137,7 +154,7 @@ const HomePage = () => {
       </Drawer>
       <Main open={open}>
         <DrawerHeader />
-        
+        {renderPage()}
       </Main>
     </Box>      
     </div>
