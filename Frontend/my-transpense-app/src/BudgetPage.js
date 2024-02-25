@@ -9,8 +9,9 @@ import Button from '@mui/material/Button';
 const BudgetPage = () => {
   return (
     <div>
-        <div className='total-budget'>
-
+        <div>
+          <div className="total-budget" ><p>Total Budget: $1000 ç
+            lol you suck</p></div>
         </div>
         <div className='visualizations'>
             
