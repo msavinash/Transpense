@@ -3,46 +3,47 @@ import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-
+import BudgetProgressBar from './Component/BudgetProgressBar';
 const BudgetPage = () => {
   return (
     <div>
-        <div>
-          <div className="total-budget" ><p>Total Budget: $1000 ç
-            lol you suck</p></div>
+      <div>
+        <div className='total-budget'>
+          <p>Total Budget: $1000 ç lol you suck</p>
         </div>
-        <div className='visualizations'>
-            
-        </div>
-        <div className='data-accordions'>
-
+      </div>
+      <div>
+        <BudgetProgressBar spent={17000} available={1000} />
+      </div>
+      <div className='visualizations'></div>
+      <div className='data-accordions'>
         <Accordion>
-            <AccordionSummary
+          <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel1-content"
-            id="panel1-header"
-            >
+            aria-controls='panel1-content'
+            id='panel1-header'
+          >
             Budget Allocation
-            </AccordionSummary>
-            <AccordionDetails>
+          </AccordionSummary>
+          <AccordionDetails>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
             malesuada lacus ex, sit amet blandit leo lobortis eget.
-            </AccordionDetails>
+          </AccordionDetails>
         </Accordion>
         <Accordion>
-            <AccordionSummary
+          <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel2-content"
-            id="panel2-header"
-            >
+            aria-controls='panel2-content'
+            id='panel2-header'
+          >
             Transactions
-            </AccordionSummary>
-            <AccordionDetails>
+          </AccordionSummary>
+          <AccordionDetails>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
             malesuada lacus ex, sit amet blandit leo lobortis eget.
-            </AccordionDetails>
+          </AccordionDetails>
         </Accordion>
-        </div>
+      </div>
     </div>
   );
 };
