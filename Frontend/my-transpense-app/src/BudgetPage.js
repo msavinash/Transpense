@@ -184,8 +184,11 @@ const BudgetPage = () => {
 
   const [budgetTotal, setBudgetTotal] = useState(300);
   const [budgetRows, setBudgetRows] = useState([
-    { id: 1, itemName: 'Item 1', itemAmount: 100 },
-    { id: 2, itemName: 'Item 2', itemAmount: 200 },
+    { id: 1, itemName: 'Food', itemAmount: 100 },
+    { id: 2, itemName: 'Logistics', itemAmount: 200 },
+    { id: 3, itemName: 'Venue', itemAmount: 600 },
+    { id: 4, itemName: 'Miscellaneous', itemAmount: 200 },
+
     // Add more initial rows as needed
   ]);
 
@@ -281,10 +284,13 @@ const getDoughnutData = () => {
         <div className='total-budget'>
           <p>Total Budget: $1000</p>
         </div>
+        <br></br>
       </div>
       <div>
         <BudgetProgressBar spent={700} available={300} />
       </div>
+      <br></br>
+
       <div className='visualizations'></div>
       <div className='data-accordions'>
         <Accordion>
@@ -300,6 +306,7 @@ const getDoughnutData = () => {
               {/* <Doughnut data={donut_data} /> */}
               <Doughnut data={getDoughnutData()} />
             </div>
+            <br></br>
 
             <div className='budget-table'>
             <TextField
@@ -310,6 +317,7 @@ const getDoughnutData = () => {
               fullWidth
               style={{ marginBottom: '16px' }}
             />
+            <br></br>
             <TableContainer component={Paper}>
               <Table>
                 <TableHead>
@@ -339,10 +347,12 @@ const getDoughnutData = () => {
                 </TableBody>
               </Table>
             </TableContainer>
+            <br></br>
             <Button variant='outlined' onClick={handleAddRow}>
               Add Row
             </Button>
           </div>
+          <br></br>
 
           </AccordionDetails>
         </Accordion>
@@ -358,6 +368,9 @@ const getDoughnutData = () => {
             <div className='transactions-line'>
               <Line options={line_options} data={line_data} />
             </div>
+            <br></br>
+            <br></br>
+            <p>Transaction history</p>
             <TableContainer component={Paper}>
               <Table sx={{ minWidth: 650 }} aria-label='transaction table'>
                 <TableHead>
