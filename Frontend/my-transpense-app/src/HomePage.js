@@ -97,7 +97,6 @@ const HomePage = () => {
 
   return (
     <div>
-      <h1>Welcome to the Home Page!</h1>
       {/* Add your content here */}
       <Box sx={{ display: 'flex' }}>
       <CssBaseline />

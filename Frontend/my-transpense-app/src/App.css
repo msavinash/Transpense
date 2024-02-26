@@ -29,12 +29,21 @@
 }
 
 .budget-donut{
-  width: 40%;
-  height: 40%;
+  /* width: 75%;
+  height: 75%; */
   display: flex;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
 }
+
+.transactions-pie{
+  width: 75%;
+  height: 75%;
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+}
+
 
 @keyframes App-logo-spin {
   from {
