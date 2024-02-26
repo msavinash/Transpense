@@ -114,7 +114,7 @@ const HomePage = () => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            Persistent drawer
+            TRANSPENSE
           </Typography>
         </Toolbar>
       </AppBar>
