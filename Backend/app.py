@@ -4,10 +4,11 @@ from firebase_admin import credentials, firestore
 from vespa.application import Vespa
 import random
 import string
+from flask_cors import CORS
 
 # Initialize Flask app
 app = Flask(__name__)
-
+CORS(app)
 # Path to your Firebase Admin SDK service account key file
 service_account_key_path = 'Backend/secret/transpense-firebase-adminsdk-u8q1s-bc0d0d9ab9.json'
 
@@ -108,7 +109,7 @@ def query():
     
     # res = the_app.query(yql='select documentid, id, title from sources * where userQuery()', query=query, ranking="bm25")
     res = the_app.query(
-        yql="select * from sources * where userQuery() or ({targetHits:1000}nearestNeighbor(embedding,q)) limit 3", 
+        yql="select * from sources * where userQuery() or ({targetHits:1000}nearestNeighbor(embedding,q)) limit 10", 
     query=query, 
     ranking="fusion", 
     body = {
@@ -116,11 +117,13 @@ def query():
     }
     )
     print(res.hits)
-    print(res.hits[0])
-    hits = res.hits
+    ans = []
+    for i in range(len(res.hits)):
+        ans.append(res.hits[i]["fields"]['title'])
+    # hits = res.hits
     # hits = [{'id': hit.fields['id'], 'title': hit.fields['title']} for hit in res.hits]
     
-    return jsonify({"hits": hits[:5]}), 200
+    return jsonify(ans), 200
 
 if __name__ == '__main__':
     app.run(debug=True)
