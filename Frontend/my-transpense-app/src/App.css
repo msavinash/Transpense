@@ -22,18 +22,6 @@
   font-style: normal;
 }
 
-body {
-  margin: 0;
-  padding: 0;
-  background-image: url('./img/hp_bg.jpeg'); /* Replace 'your-background-image.jpg' with the path to your image */
-  background-size: cover;
-  background-position: center;
-  width: 100vw;
-  height: 100vh; /* Set the height to cover the entire viewport */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 
 .mask {
   background-color: rgba(0, 0, 0, 0.5); /* Adjust the alpha value to control the mask opacity */
