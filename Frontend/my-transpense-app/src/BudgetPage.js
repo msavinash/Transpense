@@ -6,6 +6,13 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import BudgetProgressBar from './Component/BudgetProgressBar';
 import { Doughnut } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -36,6 +43,35 @@ const data = {
   ],
 };
 
+// Sample transactions data
+const transactions = [
+  {
+    id: 1,
+    date: '2023-01-01',
+    description: 'Grocery shopping',
+    amount: 100,
+    status: 'Completed',
+    category: 'Groceries',
+  },
+  {
+    id: 2,
+    date: '2023-01-03',
+    description: 'Electricity bill',
+    amount: 75,
+    status: 'Completed',
+    category: 'Utilities',
+  },
+  {
+    id: 3,
+    date: '2023-01-04',
+    description: 'Monthly rent',
+    amount: 500,
+    status: 'Completed',
+    category: 'Rent',
+  },
+  // Add more transactions as needed
+];
+
 const BudgetPage = () => {
   return (
     <div>
@@ -45,7 +81,7 @@ const BudgetPage = () => {
         </div>
       </div>
       <div>
-        <BudgetProgressBar spent={17000} available={1000} />
+        <BudgetProgressBar spent={17000} available={4000} />
       </div>
       <div className='visualizations'></div>
       <div className='data-accordions'>
@@ -72,8 +108,33 @@ const BudgetPage = () => {
             Transactions
           </AccordionSummary>
           <AccordionDetails>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
+            <TableContainer component={Paper}>
+              <Table sx={{ minWidth: 650 }} aria-label='transaction table'>
+                <TableHead>
+                  <TableRow>
+                    <TableCell>Date</TableCell>
+                    <TableCell>Description</TableCell>
+                    <TableCell>Amount ($)</TableCell>
+                    <TableCell>Status</TableCell>
+                    <TableCell>Category</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {transactions.map((transaction) => (
+                    <TableRow
+                      key={transaction.id}
+                      sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                    >
+                      <TableCell>{transaction.date}</TableCell>
+                      <TableCell>{transaction.description}</TableCell>
+                      <TableCell>{transaction.amount}</TableCell>
+                      <TableCell>{transaction.status}</TableCell>
+                      <TableCell>{transaction.category}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
           </AccordionDetails>
         </Accordion>
       </div>
