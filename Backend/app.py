@@ -1,6 +1,9 @@
 from flask import Flask, jsonify, request
 import firebase_admin
 from firebase_admin import credentials, firestore
+from vespa.application import Vespa
+import random
+import string
 
 # Initialize Flask app
 app = Flask(__name__)
@@ -12,8 +15,17 @@ service_account_key_path = 'Backend/secret/transpense-firebase-adminsdk-u8q1s-bc
 cred = credentials.Certificate(service_account_key_path)
 firebase_admin.initialize_app(cred)
 
+
+
 # Get a reference to the Firestore service
 db = firestore.client()
+
+
+endpoint = "https://f9665d92.be43d0bf.z.vespa-app.cloud/"
+cert_path = "Backend/secret/data-plane-public-cert.pem"
+key_path = "Backend/secret/data-plane-private-key.pem"
+
+the_app = Vespa(endpoint, cert=cert_path, key=key_path)
 
 @app.route('/v1/transactions', methods=['GET'])
 def get_transactions():
@@ -52,6 +64,63 @@ def add_budget():
 @app.route('/')
 def hello_world():
     return 'Hello, World!'
+
+
+
+
+@app.route('/v1/buildConversation', methods=['POST'])
+def store_chunks():
+    if 'file' not in request.files:
+        return jsonify({"error": "No file part"}), 400
+
+    file = request.files['file']
+
+    if file.filename == '':
+        return jsonify({"error": "No selected file"}), 400
+
+    if file:
+        text = file.read().decode('utf-8')
+        chunks = text.split('\n')
+
+        vespa_feed = []
+        for i, chunk in enumerate(chunks):
+            id = ''.join(random.choices(string.ascii_uppercase +
+                                         string.digits, k=20))
+            vespa_feed.append({"id": id, "fields": {"title": chunk, "body": chunk}})
+
+        def callback(response, id):
+            if not response.is_successful():
+                print(f"Error when feeding document {id}: {response.get_json()}")
+            else:
+                print(f"Document {id} stored successfully")
+
+        for data in vespa_feed:
+            the_app.feed_data_point(data_id=data["id"], fields=data["fields"], schema="doc",
+                                    namespace="tutorial", callback=callback)
+
+        return jsonify({"message": "Chunks stored successfully"}), 200
+
+# Endpoint to query Vespa and return top 5 documents matching the query
+@app.route('/v1/getConversation', methods=['POST'])
+def query():
+    data = request.json
+    query = data['query']
+    
+    # res = the_app.query(yql='select documentid, id, title from sources * where userQuery()', query=query, ranking="bm25")
+    res = the_app.query(
+        yql="select * from sources * where userQuery() or ({targetHits:1000}nearestNeighbor(embedding,q)) limit 3", 
+    query=query, 
+    ranking="fusion", 
+    body = {
+      "input.query(q)": f"embed({query})"
+    }
+    )
+    print(res.hits)
+    print(res.hits[0])
+    hits = res.hits
+    # hits = [{'id': hit.fields['id'], 'title': hit.fields['title']} for hit in res.hits]
+    
+    return jsonify({"hits": hits[:5]}), 200
 
 if __name__ == '__main__':
     app.run(debug=True)
