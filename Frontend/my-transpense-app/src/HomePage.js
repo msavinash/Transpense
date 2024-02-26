@@ -19,7 +19,7 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import BudgetPage from './BudgetPage';
-
+import ConversationPage from './ConversationPage';
 
 const drawerWidth = 240;
 
@@ -91,6 +91,8 @@ const HomePage = () => {
     switch (selectedPage) {
         case 'View Budget':
         return <BudgetPage />;
+        case 'Search Conversations':
+        return <ConversationPage />;
     }
     };
     
@@ -136,7 +138,7 @@ const HomePage = () => {
         </DrawerHeader>
         <Divider />
         <List>
-          {['View Budget'].map((text, index) => (
+          {['View Budget', 'Search Conversations'].map((text, index) => (
             <ListItem key={text} disablePadding
             button
             onClick={() => handlePageChange(text)}>
