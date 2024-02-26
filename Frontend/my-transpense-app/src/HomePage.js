@@ -16,8 +16,8 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
+import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
+import ReceiptIcon from '@mui/icons-material/Receipt';
 import BudgetPage from './BudgetPage';
 import ConversationPage from './ConversationPage';
 
@@ -144,7 +144,7 @@ const HomePage = () => {
             onClick={() => handlePageChange(text)}>
               <ListItemButton>
                 <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                  {index % 2 === 0 ? <MonetizationOnIcon /> : <ReceiptIcon />}
                 </ListItemIcon>
                 <ListItemText primary={text} />
               </ListItemButton>

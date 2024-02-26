@@ -4,6 +4,7 @@ import HomePage from './HomePage';
 function App() {
   return (
     <div className="App">
+      <div className="mask"></div>
       <header>
         {/* <img src={logo} className="App-logo" alt="logo" /> */}
         {/* <p>
