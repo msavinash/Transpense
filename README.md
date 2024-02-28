@@ -9,13 +9,8 @@ Transpense is a web application designed to address transparency in budgeting an
 - **UI Components:** Utilizes components like Accordion, Button, and TextField from Material-UI for responsive design.
 
 ### Backend
-- **Framework:** Flask (Python)
-- **Database:** Firebase Firestore for real-time data syncing and efficient management.
-- **Storage:** Firebase Storage for secure storage and retrieval of user-generated content.
-- **Authentication:** Firebase Authentication for secure user access and management.
-
-## Deployment
-- **Hosting:** Firebase Hosting for fast loading times and secure connections.
+- **Framework:** Flask-Python (For backend API deployment)
+- **Vector Database:** Vespa.ai (For storing and retrieving text for semantic similarity)
 
 ## Libraries and Tools
 - **Data Visualization:** Chart.js for enriching the application with data visualization capabilities.
