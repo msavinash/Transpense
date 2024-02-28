@@ -14,10 +14,10 @@ Transpense is a web application designed to address transparency in budgeting an
 - **Storage:** Firebase Storage for secure storage and retrieval of user-generated content.
 - **Authentication:** Firebase Authentication for secure user access and management.
 
-### Deployment
+## Deployment
 - **Hosting:** Firebase Hosting for fast loading times and secure connections.
 
-### Libraries and Tools
+## Libraries and Tools
 - **Data Visualization:** Chart.js for enriching the application with data visualization capabilities.
 - **Mock Data Generation:** Faker.js for generating mock data.
 - **Text Searching:** Utilizes Vespa.ai for text searching through meeting conversation data.
